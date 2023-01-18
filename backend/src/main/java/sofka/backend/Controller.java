@@ -23,10 +23,10 @@ public class Controller {
 
 
     @Bean
-    public RouterFunction<ServerResponse> createCategory() {
+    public RouterFunction<ServerResponse> createProduct() {
         return route(
-                POST("/test/create/").and(accept(MediaType.APPLICATION_JSON)),
-                request -> template.save(request.bodyToMono(Model.class), "TESTDEPRUEBA")
+                POST("/product/create/").and(accept(MediaType.APPLICATION_JSON)),
+                request -> template.save(request.bodyToMono(ProductModel.class), "products")
                         .then(ServerResponse.ok().build())
         );
     }
