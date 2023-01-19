@@ -1,4 +1,4 @@
-package sofka.backend;
+package sofka.backend.controller;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,26 +6,42 @@ import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.DELETE;
-
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import sofka.backend.models.ProductModel;
+import sofka.backend.services.ProductService;
 
+@CrossOrigin(value = "*")
+@RestController
+@RequestMapping("")
 @Configuration
 public class Controller {
-
+    private final ProductService service;
     private  ReactiveMongoTemplate template;
-
-    public Controller(ReactiveMongoTemplate template) {
+    
+    @Autowired
+    public Controller(ReactiveMongoTemplate template, ProductService service) {
         this.template = template;
+        this.service = service;
+        
     } 
 
     @Bean
@@ -57,6 +73,13 @@ public class Controller {
                         "products"
                 ).then(ServerResponse.ok().build()));
     }
+    // Actualizar servicios
+    @PutMapping("/product/update/{id}")
+    public Mono<ResponseEntity<ProductModel>> updateProduct(@PathVariable String id, @RequestBody ProductModel productModel) {
+        return service.updateProduct(id, productModel);
+    }
+
+
 
     private Query filterByName(String name) {
         return new Query(

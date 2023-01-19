@@ -1,14 +1,20 @@
-package sofka.backend;
+package sofka.backend.models;
 
+import java.time.Instant;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "products")
 public class ProductModel {
-    
+    @Id
+    private String id;
     private String name;
     private Integer inInventary;
     private Boolean enabled;
     private Integer min;
     private Integer max;
-    private String collection;
-    
+
     public Integer getInInventary() {
         return inInventary;
     }
@@ -41,22 +47,20 @@ public class ProductModel {
         this.max = max;
     }
 
-    public String getCollection() {
-        return collection;
-    }
-
-    public void setCollection(String collection) {
-        this.collection = collection;
-    }
-
-   
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
