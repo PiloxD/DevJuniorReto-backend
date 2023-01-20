@@ -1,6 +1,7 @@
 package sofka.backend.models;
 
 public class ProductsSelectedModel {
+    
     private String idProduct;
     private Integer quantity;
     
