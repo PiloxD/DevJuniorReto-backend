@@ -33,12 +33,12 @@ import sofka.backend.services.ProductService;
 @RestController
 @RequestMapping("")
 @Configuration
-public class Controller {
+public class ProductsController {
     private final ProductService service;
     private  ReactiveMongoTemplate template;
     
     @Autowired
-    public Controller(ReactiveMongoTemplate template, ProductService service) {
+    public ProductsController(ReactiveMongoTemplate template, ProductService service) {
         this.template = template;
         this.service = service;
         
