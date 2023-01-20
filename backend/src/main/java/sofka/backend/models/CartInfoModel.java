@@ -3,12 +3,21 @@ package sofka.backend.models;
 import java.time.Instant;
 import java.util.List;
 
-public class CartInfoModel {
+import org.springframework.data.annotation.Id;
 
-    private final Instant dateInstant = Instant.now();
+public class CartInfoModel {
+    @Id
+    private String cartId;
+    private Instant dateInstant;
     private String idType;
     private Integer documentId;
     private String clientName;
+    private List<ProductsSelectedModel> clientSelection;
+    
+    public void setDateInstant(Instant dateInstant) {
+        this.dateInstant = Instant.now();
+    }
+
     public Instant getDateInstant() {
         return dateInstant;
     }
@@ -27,6 +36,12 @@ public class CartInfoModel {
     public String getClientName() {
         return clientName;
     }
+    public String getCartId() {
+        return cartId;
+    }
+    public void setCartId(String cartId) {
+        this.cartId = cartId;
+    }
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
@@ -36,7 +51,6 @@ public class CartInfoModel {
     public void setClientSelection(List<ProductsSelectedModel> clientSelection) {
         this.clientSelection = clientSelection;
     }
-    private List<ProductsSelectedModel> clientSelection;
 
     
 }

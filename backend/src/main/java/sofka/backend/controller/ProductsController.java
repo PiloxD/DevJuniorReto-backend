@@ -43,7 +43,6 @@ public class ProductsController {
         this.service = service;
         
     } 
-
     @Bean
     public RouterFunction<ServerResponse> getProducts() {
         return route(
@@ -52,7 +51,7 @@ public class ProductsController {
                         .collectList()
                         .flatMap(list -> ServerResponse.ok()
                                 .contentType(MediaType.APPLICATION_JSON)
-                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list), ProductModel.class)))
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list).skipLast(4), ProductModel.class)))
         );}
 
     @Bean

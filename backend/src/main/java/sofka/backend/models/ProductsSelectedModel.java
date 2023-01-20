@@ -1,12 +1,13 @@
 package sofka.backend.models;
 
 public class ProductsSelectedModel {
-    private Integer idProduct;
+    private String idProduct;
     private Integer quantity;
-    public Integer getIdProduct() {
+    
+    public String getIdProduct() {
         return idProduct;
     }
-    public void setIdProduct(Integer idProduct) {
+    public void setIdProduct(String idProduct) {
         this.idProduct = idProduct;
     }
     public Integer getQuantity() {
