@@ -13,6 +13,16 @@ public class ProductModel {
     private Boolean enabled;
     private Integer min;
     private Integer max;
+    private String imgUrl;
+    
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
 
     public Integer getInInventary() {
         return inInventary;

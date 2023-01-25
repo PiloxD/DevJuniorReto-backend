@@ -29,7 +29,7 @@ import reactor.core.publisher.Mono;
 import sofka.backend.models.ProductModel;
 import sofka.backend.services.ProductService;
 
-@CrossOrigin(value = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("")
 @Configuration

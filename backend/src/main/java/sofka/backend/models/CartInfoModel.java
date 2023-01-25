@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 
 public class CartInfoModel {
-    @Id
-    private String cartId;
     private Instant dateInstant;
     private String idType;
     private Integer documentId;
@@ -36,12 +34,7 @@ public class CartInfoModel {
     public String getClientName() {
         return clientName;
     }
-    public String getCartId() {
-        return cartId;
-    }
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
+  
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
