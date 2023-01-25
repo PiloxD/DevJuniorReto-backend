@@ -65,9 +65,9 @@ public class ProductsController {
     @Bean
     public RouterFunction<ServerResponse> deleteProduct(){
         return route(
-            DELETE("/product/delete/{name}").and(accept(MediaType.APPLICATION_JSON)),
+            DELETE("/product/delete/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> template.findAndRemove(
-                        filterByName(request.pathVariable("name")),
+                    filterById(request.pathVariable("id")),
                         ProductModel.class,
                         "products"
                 ).then(ServerResponse.ok().build()));
@@ -80,9 +80,9 @@ public class ProductsController {
 
 
 
-    private Query filterByName(String name) {
+    private Query filterById(String id) {
         return new Query(
-                Criteria.where("name").is(name)
+                Criteria.where("id").is(id)
         );
     }
     
